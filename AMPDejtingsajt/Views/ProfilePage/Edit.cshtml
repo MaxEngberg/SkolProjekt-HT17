@@ -1,0 +1,117 @@
+﻿@model DataLayer.Models.Person
+
+@using (Html.BeginForm("Edit", "ProfilePage", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                @Html.ValidationSummary(true, "")
+                @Html.HiddenFor(model => model.PersonID)
+                @Html.HiddenFor(model => model.SocialNumber)
+
+                <div>
+                    @Html.LabelFor(model => model.FirstName)
+                    <div>
+                        @Html.EditorFor(model => model.FirstName)
+                        @Html.ValidationMessageFor(model => model.FirstName, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.LastName)
+                    <div>
+                        @Html.EditorFor(model => model.LastName)
+                        @Html.ValidationMessageFor(model => model.LastName, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Gender)
+                    <div>
+                        @Html.DropDownList("Gender", new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text = "Male", Value = "Male"},
+                                    new SelectListItem { Text = "Female", Value = "Female"}
+                                })
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.City)
+                    <div>
+                        @Html.EditorFor(model => model.City)
+                        @Html.ValidationMessageFor(model => model.City, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Preference)
+                    <div>
+                        @Html.DropDownList("Preference", new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text = "Male", Value = "Male"},
+                                    new SelectListItem { Text = "Female", Value = "Female"}
+                                })
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.PresentationText)
+                    <div>
+                        @Html.EditorFor(model => model.PresentationText)
+                        @Html.ValidationMessageFor(model => model.PresentationText, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Mail)
+                    <div>
+                        @Html.EditorFor(model => model.Mail)
+                        @Html.ValidationMessageFor(model => model.Mail, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.UserName)
+                    <div>
+                        @Html.EditorFor(model => model.UserName)
+                        @Html.ValidationMessageFor(model => model.UserName, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.LabelFor(model => model.Password)
+                    <div>
+                        @Html.EditorFor(model => model.Password)
+                        @Html.ValidationMessageFor(model => model.Password, "")
+                    </div>
+                </div>
+
+                <div>
+                    @Html.Label("Check this box to avoid getting find in the search meny")
+                    <div>
+                        @Html.EditorFor(x => x.isSearchable)
+                    </div>
+                </div>
+
+                <input type="submit" value="Save" />
+
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div>
+                @Html.Label("Image", new { @class = "control-label col-md-2" })
+                <div>
+                    <input type="file" name="upload" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

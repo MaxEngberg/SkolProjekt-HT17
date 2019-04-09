@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Our Datingsite</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                @Html.ActionLink(AMPDejtingsajt.Internationalization.Resource.OldInder, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink(AMPDejtingsajt.Internationalization.Resource.FrontPage, "Index", "Home", new { area = "" }, new { @class = "nav navbar-nav" })</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Andreas, Max, Pedram</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/custom.js"></script>
+    <script>
+        // Denna funktion gör så att sökfältet fungerar.
+        jQuery(function ($) {
+
+        $("#searchInput").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetSearchValue", "Home")',
+                    dataType: "json",
+                    data: { search: $("#searchInput").val() },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.FirstName + " " + item.LastName,
+                                value: item.PersonID
+                            };
+                        }));
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Error");
+                    }
+                });
+            }
+        }).data('uiAutocomplete')._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<a href=" + "/ProfilePage/User/" + item.value + ">" + item.label + "</a>")
+                .appendTo(ul);
+        };
+        });
+
+       var friendRequests = '@Url.Action("CheckForFriendRequests", "Home")'
+    </script>
+</body>
+</html>

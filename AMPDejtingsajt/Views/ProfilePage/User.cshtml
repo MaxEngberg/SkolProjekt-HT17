@@ -1,0 +1,131 @@
+﻿@model AMPDejtingsajt.ViewModels.ProfileWallViewModel
+
+@{
+    ViewBag.Title = "User";
+    int receiverID = ViewBag.UserProfile;
+    int senderID = Convert.ToInt32(Session["PersonID"]);
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="col-md-4">
+            @{
+                if(Model.Person.FileName == null)
+                {
+                    <img src="/Images/test.png" class="img-responsive" />
+                }
+                else
+                {
+                    <img src="@Url.Action("Image", new { id = Model.Person.PersonID })" class="img-responsive" />
+                }
+            }
+            <br />
+            <button type="button" onclick="location.href = '@Url.Action("AddFriend", "ProfilePage", new { receiverID = Model.Person.PersonID })'">Follow person</button>
+        </div>
+
+        <div class="col-md-8">
+            <div class="well">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>About me</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Firstname: </strong>@Html.DisplayFor(item => item.Person.FirstName)
+                                    <br />
+                                    <br />
+                                    <strong>Lastname: </strong>@Html.DisplayFor(item => item.Person.LastName)
+                                    <br />
+                                    <br />
+                                    <strong>Gender: </strong>@Html.DisplayFor(item => item.Person.Gender)
+                                    <br />
+                                    <br />
+                                    <strong>City: </strong>@Html.DisplayFor(item => item.Person.City)
+                                    <br />
+                                    <br />
+                                    <strong>Preference: </strong>@Html.DisplayFor(item => item.Person.Preference)
+                                    <br />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="well">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Presentation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                     @Html.DisplayFor(item => item.Person.PresentationText)
+                                    <br />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <input id="wallPostInputText" type="text" placeholder="Your message" />
+        <input id="wallPostSubmit" type="button" value="Post" />
+        <div class="well">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sändare</th>
+                            <th>Meddelande</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Message)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.SenderId)</td>
+                                <td>@Html.DisplayFor(modelItem => item.MessageText)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    // Denna funktion postar ett meddelande på en användares profilsida. 
+        $(document).ready(function () {
+            $("#wallPostSubmit").click(getMessageText);
+        });
+
+        function getMessageText() {
+            var messageText = $("#wallPostInputText").val();
+            var message = {MessageText: messageText, SenderId: @senderID, RecieverId: @receiverID }
+            $.ajax({
+                url: '@Url.Action("CreateNewMessage", "ApiMessage", new { httproute = "" })',
+                type: "POST",
+                data: JSON.stringify(message),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                        window.location.reload();
+                    }
+                });
+        }
+</script>
+
+

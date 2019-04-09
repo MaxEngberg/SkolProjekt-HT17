@@ -1,0 +1,55 @@
+﻿@model AMPDejtingsajt.ViewModels.FriendsViewModel
+
+@{
+    ViewBag.Title = "User";
+}
+
+<div class="col-md-6">
+    <div class="well">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Your followers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Person)
+                    {
+                        var fullName = item.FirstName + " " + item.LastName;
+                        <tr>
+                            <td>@Html.DisplayFor(name => fullName)</td>
+                            <td>@Html.ActionLink("Visit profile", "User", "ProfilePage", new { id = item.PersonID }, new { hidefocus = "hidefocus" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="well">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>People you follow</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PersonTwo)
+                    {
+                        var fullName = item.FirstName + " " + item.LastName;
+                        <tr>
+                            <td>@Html.DisplayFor(name => fullName)</td>
+                            <td>@Html.ActionLink("Visit profile", "User", "ProfilePage", new { id = item.PersonID }, new { hidefocus = "hidefocus" })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

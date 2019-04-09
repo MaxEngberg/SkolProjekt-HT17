@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMPDejtingsajt", "AMPDejtingsajt\AMPDejtingsajt.csproj", "{51D98922-C5F5-4F8E-8696-4D2E2F624F3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{D2D8C63F-BCC2-40DE-9395-7164570CEEC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51D98922-C5F5-4F8E-8696-4D2E2F624F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D98922-C5F5-4F8E-8696-4D2E2F624F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D98922-C5F5-4F8E-8696-4D2E2F624F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D98922-C5F5-4F8E-8696-4D2E2F624F3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2D8C63F-BCC2-40DE-9395-7164570CEEC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2D8C63F-BCC2-40DE-9395-7164570CEEC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2D8C63F-BCC2-40DE-9395-7164570CEEC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2D8C63F-BCC2-40DE-9395-7164570CEEC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3DB96EC-D3E8-4FD9-A565-5FB50FE744C4}
+	EndGlobalSection
+EndGlobal
